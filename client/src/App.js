@@ -2,12 +2,21 @@ import './App.css';
 import Navbar from './Navbar';
 import { MDBContainer } from 'mdb-react-ui-kit';
 import PageFooter from './Footer';
+import { useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import HomePage from './LandingPage';
 
 
 function App() {
+  useEffect(() => {
+    AOS.init();
+  }, []);
+
   return (
     <MDBContainer>
       <Navbar />
+      <HomePage />
       <PageFooter />
     </MDBContainer>
   );

@@ -17,7 +17,7 @@ export default function PageFooter() {
                     <MDBRow>
                         <MDBCol lg='3' md='6' className='mb-4 mb-md-0'>
                             <h6 className='text-uppercase fw-bold mb-4'>
-                                <MDBIcon icon="gamepad" className="me-3" />
+                                <MDBIcon icon="tablet" className="me-3" />
                                 About Web App
                             </h6>
                             <p>
