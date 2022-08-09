@@ -10,3 +10,28 @@
 #PI:hover {
     transform: translateY(-10px);
 }
+
+#info {
+    margin-top: 1%;
+    margin-bottom: 1%;
+    padding: 1%;
+}
+
+.card-end {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.buttons-info {
+    display: flex;
+    justify-content: space-around;
+}
+
+.about-game {
+    background-color: white;
+}
+
+.register-form {
+    display: flex;
+    justify-content: center
+}
