@@ -1,10 +1,7 @@
 package com.codecool.API.Entity.Champion;
 
 import com.codecool.API.Entity.Equipment.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -13,6 +10,8 @@ import javax.persistence.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
+
 public class ChampionInventory {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -30,4 +29,6 @@ public class ChampionInventory {
     private MainWeapon mainWeapon;
     @OneToOne
     private SecondaryWeapon secondaryWeapon;
+    @OneToOne
+    private Talisman talisman;
 }

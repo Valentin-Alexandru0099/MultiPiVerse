@@ -1,10 +1,7 @@
 package com.codecool.API.Entity.Item;
 
 import com.codecool.API.Entity.Rarity;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,6 +13,7 @@ import javax.persistence.Id;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Orb {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,4 +21,5 @@ public class Orb {
     private String name;
     private String description;
     private Rarity rarity;
+
 }

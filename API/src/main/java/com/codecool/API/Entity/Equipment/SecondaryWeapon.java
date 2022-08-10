@@ -2,10 +2,7 @@ package com.codecool.API.Entity.Equipment;
 
 import com.codecool.API.Entity.Champion.Champion;
 import com.codecool.API.Entity.Rarity;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -14,6 +11,8 @@ import javax.persistence.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
+
 public class SecondaryWeapon {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
