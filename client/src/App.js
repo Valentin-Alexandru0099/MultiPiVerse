@@ -20,7 +20,7 @@ export const notify = (type, message) => {
     case "warn":
       toast.warn(message);
       return;
-    case "succes":
+    case "success":
       toast.success(message);
       return;
     default:

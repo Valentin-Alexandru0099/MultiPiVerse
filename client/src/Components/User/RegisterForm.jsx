@@ -10,6 +10,8 @@ import { useRef } from 'react';
 import { useState } from 'react';
 import { notify } from '../../App';
 import { postData } from '../../Fetcher/fetcher';
+import { sendEmail } from "../../EmailJs/emailJs";
+import { useEffect } from 'react';
 
 export default function RegisterForm() {
 
@@ -20,6 +22,7 @@ export default function RegisterForm() {
         confirmPassword: '',
         email: '',
     });
+    const [activationCode, setActivationCode] = useState("");
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -36,8 +39,13 @@ export default function RegisterForm() {
                 if (!response.username) {
                     notify("error", response);
                 } else {
+                    setActivationCode("http://localhost:3000/activate?activationCode=" + response.activationCode);
                     notify("", "Generating verification code... ")
-                }
+                    setTimeout(() => {
+                        notify("success", "Account created, email sent!");
+                        sendEmail("registration", form.current);
+                    }, 1000)
+                };
             });
     };
 
@@ -86,7 +94,10 @@ export default function RegisterForm() {
                             <MDBInput name='confirmPassword' onChange={handleChange} label="Confirm Password" className='form-control' type='password' />
                         </MDBInputGroup>
                     </MDBListGroupItem>
-                    <a href='/login'>Already have an account?</a>
+                    <MDBListGroupItem>
+                        <a href='/login'>Already have an account?</a>
+                        <input style={{ display: 'none' }} name='activationCode' defaultValue={activationCode} />
+                    </MDBListGroupItem>
                     <MDBListGroupItem>
                         <MDBBtn color='secondary' type='submit'>Join now!</MDBBtn>
                     </MDBListGroupItem>
