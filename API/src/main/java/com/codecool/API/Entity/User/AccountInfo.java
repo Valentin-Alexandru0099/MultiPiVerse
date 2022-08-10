@@ -10,6 +10,32 @@ public class AccountInfo {
     private String email;
     private LocalDate submissionTime;
     private Inventory inventory;
+    private boolean active;
+    private boolean blocked;
+    private String activationCode;
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public void setBlocked(boolean blocked) {
+        this.blocked = blocked;
+    }
+
+    public void setActivationCode(String activationCode) {
+        this.activationCode = activationCode;
+    }
+
+    public String getActivationCode() {
+        return activationCode;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public boolean isBlocked() {
+        return blocked;
+    }
 
     public Long getId() {
         return id;
@@ -26,6 +52,7 @@ public class AccountInfo {
     public void setUsername(String username) {
         this.username = username;
     }
+
     public String getEmail() {
         return email;
     }

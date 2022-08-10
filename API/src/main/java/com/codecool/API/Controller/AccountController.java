@@ -30,8 +30,8 @@ public class AccountController {
     JWTTokenHelper jWTTokenHelper;
 
     @PostMapping(value = "/register")
-    public void register(@RequestBody Account user) {
-        accountService.addUser(user);
+    public Object register(@RequestBody Account user) {
+        return accountService.addUser(user);
     }
 
     @PostMapping(value = "/login")
@@ -52,7 +52,7 @@ public class AccountController {
     }
 
     @GetMapping(value = "getUser")
-    public ResponseEntity<?> getUser(@RequestBody Long userId){
+    public ResponseEntity<?> getUser(@RequestBody Long userId) {
         Account user = accountService.getUser(userId);
         Account userObj = (Account) accountService.loadUserByUsername(user.getUsername());
 

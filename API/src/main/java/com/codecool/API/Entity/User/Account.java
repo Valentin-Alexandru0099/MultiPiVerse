@@ -10,6 +10,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.random.RandomGenerator;
 
 
 @Entity
@@ -28,10 +29,12 @@ public class Account implements UserDetails {
     private String password;
     private String email;
     private LocalDate submissionTime;
+    private boolean active;
+    private boolean blocked;
+    private String activationCode;
     @ElementCollection(fetch = FetchType.EAGER)
     @JsonIgnore
     private List<String> roles = new ArrayList<>();
-
     @OneToOne
     private Inventory inventory;
 
@@ -60,4 +63,5 @@ public class Account implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
 }

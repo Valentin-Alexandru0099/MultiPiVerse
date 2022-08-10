@@ -15,7 +15,7 @@ import {
     MDBDropdownLink,
     MDBCollapse,
 } from 'mdb-react-ui-kit';
-import brand from "../images/Brand.png";
+import brand from "../../images/Brand.png";
 
 export default function Navbar() {
     const [showBasic, setShowBasic] = useState(false);
