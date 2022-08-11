@@ -22,8 +22,21 @@ import ChampionsInfo from './champions';
 import ItemsInfo from './items';
 import MissionsInfo from './missions';
 import RegisterForm from '../User/RegisterForm';
+import { useEffect } from 'react';
+import { userToken } from '../../Jotai/Atom';
+import { useAtom } from 'jotai';
 
 export default function HomePage() {
+
+
+    const [token, setToken] = useAtom(userToken);
+
+    useEffect(() => {
+        console.log(token)
+        if (token) {
+            window.location.href = '/user-page';
+        };
+    }, []);
 
     const [basicActive, setBasicActive] = useState('tab1');
 
@@ -31,9 +44,9 @@ export default function HomePage() {
         if (value === basicActive) {
             return;
         }
-
         setBasicActive(value);
     };
+
     return (
         <>
             <header>

@@ -149,8 +149,7 @@ public class AccountService implements UserDetailsService {
 
             Account user = (Account) auth.getPrincipal();
             if (user.isBlocked()){
-                return ResponseEntity.badRequest().body("Account blo");
-
+                return ResponseEntity.badRequest().body("Account blocked");
             }
             if (!user.isActive()) {
                 return ResponseEntity.badRequest().body("Account not activated!");

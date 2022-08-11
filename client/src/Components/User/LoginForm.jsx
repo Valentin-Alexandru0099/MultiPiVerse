@@ -17,9 +17,13 @@ import { useState } from 'react';
 import { notify } from '../../App';
 import { sendEmail } from '../../EmailJs/emailJs';
 import { getData, postData } from '../../Fetcher/fetcher';
+import { useAtom } from 'jotai';
+import { userToken } from '../../Jotai/Atom';
+
 
 export default function LoginForm() {
 
+    const [token, setToken] = useAtom(userToken);
     const [resetCode, setResetCode] = useState("");
     const [centredModal, setCentredModal] = useState(false);
     const [resetPasswordField, setResetPasswordField] = useState({
@@ -78,7 +82,7 @@ export default function LoginForm() {
             .then((response) => {
                 console.log(response);
                 if (response.token) {
-                    localStorage.setItem('token', response.token);
+                    setToken(response.token);
                 } else {
                     notify("error", response);
                 };
