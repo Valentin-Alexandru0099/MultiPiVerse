@@ -21,6 +21,21 @@ public class AccountService implements UserDetailsService {
     @Autowired
     private AccountRepository accountRepository;
 
+    public ResponseEntity<?> activateAccount(String activationCode) {
+        Account user = accountRepository.findByActivationCode(activationCode);
+        if (user != null) {
+            if (user.isActive()) {
+                return ResponseEntity.badRequest().body("Account already activated!");
+            } else {
+                user.setActive(true);
+                accountRepository.saveAndFlush(user);
+                return ResponseEntity.ok("Account activated!");
+            }
+        } else {
+            return ResponseEntity.badRequest().body("Code not in database!");
+        }
+    }
+
     public ResponseEntity<?> resetPassword(String resetCode, String password) {
         Account user = accountRepository.findByResetPasswordCode(resetCode);
         if (user != null) {
@@ -127,6 +142,4 @@ public class AccountService implements UserDetailsService {
                 .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
                 .toString();
     }
-
-
 }

@@ -77,8 +77,12 @@ public class AccountController {
     }
 
     @PutMapping(value = "resetUserPassword/{resetCode}")
-    public ResponseEntity<?> resetPassword(@PathVariable String resetCode, @RequestBody String password){
-       return accountService.resetPassword(resetCode, password);
+    public ResponseEntity<?> resetPassword(@PathVariable String resetCode, @RequestBody String password) {
+        return accountService.resetPassword(resetCode, password);
     }
 
+    @GetMapping(value = "activate-account/{activationCode}")
+    public ResponseEntity<?> activateAccount(@PathVariable String activationCode) {
+        return accountService.activateAccount(activationCode);
+    }
 }

@@ -11,6 +11,7 @@ import HomePage from "./Components/LandingPage/";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ResetPassword from './Components/User/ResetPassword';
+import AccountActivation from './Components/User/AccountActivation';
 
 export const notify = (type, message) => {
   switch (type) {
@@ -57,6 +58,7 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/reset-password" element={<ResetPassword />} />
+            <Route path="/activate" element={<AccountActivation />} />
           </Routes>
         </BrowserRouter>
         <PageFooter />

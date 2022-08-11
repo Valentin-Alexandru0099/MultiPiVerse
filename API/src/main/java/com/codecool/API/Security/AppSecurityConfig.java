@@ -36,6 +36,7 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
                                 , "/api/users/login"
                                 , "/api/users/generateResetPasswordCode/**"
                                 , "/api/users/findUserByResetCode/**"
+                                , "/api/users/activate-account/**"
                         ).permitAll()
                 )
                 .authorizeRequests((request) -> request.antMatchers(
