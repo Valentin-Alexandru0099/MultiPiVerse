@@ -11,24 +11,32 @@ import {
     MDBTabsLink,
     MDBTabsContent,
     MDBTabsPane,
-    MDBBtn,
-    MDBInput,
-    MDBListGroupItem,
-    MDBListGroup,
-    MDBInputGroup,
-    MDBIcon,
 } from 'mdb-react-ui-kit';
 import "./landingPage.css";
-import m from "../images/m.png";
-import pi from "../images/pi.png";
-import v from "../images/v.png";
-import infoGif from "../images/info.gif";
+import m from "../../images/m.png";
+import pi from "../../images/pi.png";
+import v from "../../images/v.png";
+import infoGif from "../../images/info.gif";
 import { useState } from 'react';
 import ChampionsInfo from './champions';
 import ItemsInfo from './items';
 import MissionsInfo from './missions';
+import RegisterForm from '../User/RegisterForm';
+import { useEffect } from 'react';
+import { userToken } from '../../Jotai/Atom';
+import { useAtom } from 'jotai';
 
 export default function HomePage() {
+
+
+    const [token, setToken] = useAtom(userToken);
+
+    useEffect(() => {
+        console.log(token)
+        if (token) {
+            window.location.href = '/user-page';
+        };
+    }, []);
 
     const [basicActive, setBasicActive] = useState('tab1');
 
@@ -36,9 +44,9 @@ export default function HomePage() {
         if (value === basicActive) {
             return;
         }
-
         setBasicActive(value);
     };
+
     return (
         <>
             <header>
@@ -103,6 +111,12 @@ export default function HomePage() {
                         </MDBCol>
                     </MDBRow>
                 </div>
+                <MDBCard id='info' alignment='center'>
+                    <MDBCardBody>
+                        <MDBCardTitle>Are you ready to start your adventure ?</MDBCardTitle>
+                        <RegisterForm />
+                    </MDBCardBody>
+                </MDBCard>
             </header>
             <MDBCard id='info' className='w-50'>
                 <MDBCardBody>
@@ -167,39 +181,6 @@ export default function HomePage() {
                     </MDBTabsPane>
                 </MDBTabsContent>
             </section>
-            <MDBCard id='info' alignment='center'>
-                <MDBCardBody>
-                    <MDBCardTitle>Are you ready to start your adventure ?</MDBCardTitle>
-                    <form className='register-form'>
-                        <MDBListGroup flush>
-                            <MDBListGroupItem>
-                                <MDBInputGroup className='mb-3' noBorder textBefore={<MDBIcon fas icon='user-circle' />}>
-                                    <MDBInput label="Username" className='form-control' type='text' />
-                                </MDBInputGroup>
-                            </MDBListGroupItem>
-                            <MDBListGroupItem>
-                                <MDBInputGroup className='mb-3' noBorder textBefore={<MDBIcon fas icon='envelope' />}>
-                                    <MDBInput label="Email" className='form-control' type='email' />
-                                </MDBInputGroup>
-                            </MDBListGroupItem>
-                            <MDBListGroupItem>
-                                <MDBInputGroup className='mb-3' noBorder textBefore={<MDBIcon fas icon='unlock-alt' />}>
-                                    <MDBInput label="Password" className='form-control' type='password' />
-                                </MDBInputGroup>
-                            </MDBListGroupItem>
-                            <MDBListGroupItem>
-                                <MDBInputGroup className='mb-3' noBorder textBefore={<MDBIcon fas icon='unlock-alt' />}>
-                                    <MDBInput label="Confirm Password" className='form-control' type='password' />
-                                </MDBInputGroup>
-                            </MDBListGroupItem>
-                                <a href='/login'>Already have an account?</a>
-                            <MDBListGroupItem>
-                                <MDBBtn color='secondary' type='submit'>Join now!</MDBBtn>
-                            </MDBListGroupItem>
-                        </MDBListGroup>
-                    </form>
-                </MDBCardBody>
-            </MDBCard>
         </>
     );
 };
