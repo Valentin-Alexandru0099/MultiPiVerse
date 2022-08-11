@@ -6,16 +6,7 @@ import {
     MDBNavbarToggler,
     MDBIcon,
     MDBNavbarNav,
-    MDBNavbarItem,
-    MDBNavbarLink,
-    MDBDropdown,
-    MDBDropdownToggle,
-    MDBDropdownMenu,
-    MDBDropdownItem,
-    MDBDropdownLink,
     MDBCollapse,
-    MDBInputGroup,
-    MDBBtn,
 } from 'mdb-react-ui-kit';
 import brand from "../../images/Brand.png";
 import LoginForm from '../User/LoginForm';

@@ -16,7 +16,7 @@ import { useRef } from 'react';
 import { useState } from 'react';
 import { notify } from '../../App';
 import { sendEmail } from '../../EmailJs/emailJs';
-import { getData } from '../../Fetcher/fetcher';
+import { getData, postData } from '../../Fetcher/fetcher';
 
 export default function LoginForm() {
 
@@ -27,7 +27,6 @@ export default function LoginForm() {
     });
 
     const passwordResetForm = useRef();
-    const form = useRef();
 
     const [formValues, setFormValues] = useState({
         username: "",
@@ -56,7 +55,6 @@ export default function LoginForm() {
         e.preventDefault();
         getData("users/generateResetPasswordCode/" + resetPasswordField.email)
             .then((response) => {
-                console.log(response);
                 if (response.resetCode) {
                     setResetCode(response.resetCode);
                     notify("succsess", "Email send for Password Reset!");
@@ -66,6 +64,25 @@ export default function LoginForm() {
                 } else {
                     notify("error", response);
                 };
+            });
+    };
+
+
+    const login = (e) => {
+        e.preventDefault();
+        if (formValues.username === "" || formValues.password === "") {
+            notify("warn", "All fields required!");
+            return;
+        }
+        postData("users/login", formValues)
+            .then((response) => {
+                console.log(response);
+                if (response.token) {
+                    localStorage.setItem('token', response.token);
+                } else {
+                    notify("error", response);
+                };
+
             });
     };
 
@@ -91,7 +108,7 @@ export default function LoginForm() {
                     </MDBModalContent>
                 </MDBModalDialog>
             </MDBModal>
-            <MDBInputGroup tag="form" className='w-auto mb-3'>
+            <MDBInputGroup onSubmit={login} tag="form" className='w-auto mb-3'>
                 <MDBRow>
                     <MDBCol>
                         <MDBInputGroup className='mb-3' noBorder textBefore>

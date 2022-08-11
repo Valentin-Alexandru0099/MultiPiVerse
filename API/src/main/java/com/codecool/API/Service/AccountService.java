@@ -2,9 +2,16 @@ package com.codecool.API.Service;
 
 import com.codecool.API.Entity.User.Account;
 import com.codecool.API.Entity.User.AccountInfo;
+import com.codecool.API.Entity.User.LoginResponse;
 import com.codecool.API.Repository.AccountRepository;
+import com.codecool.API.Security.AuthenticationRequest;
+import com.codecool.API.Security.JWTTokenHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -12,6 +19,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.time.LocalDate;
 import java.util.Optional;
 import java.util.Random;
@@ -20,6 +29,10 @@ import java.util.Random;
 public class AccountService implements UserDetailsService {
     @Autowired
     private AccountRepository accountRepository;
+
+    @Autowired
+    JWTTokenHelper jWTTokenHelper;
+
 
     public ResponseEntity<?> activateAccount(String activationCode) {
         Account user = accountRepository.findByActivationCode(activationCode);
@@ -124,6 +137,33 @@ public class AccountService implements UserDetailsService {
             throw new UsernameNotFoundException("User Not Found with userName " + username);
         }
         return user;
+    }
+
+    public ResponseEntity<?> login(AuthenticationRequest authenticationRequest, AuthenticationManager authenticationManager) throws InvalidKeySpecException, NoSuchAlgorithmException {
+        try {
+            final Authentication auth = authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(authenticationRequest.getUsername(),
+                            authenticationRequest.getPassword()));
+
+            SecurityContextHolder.getContext().setAuthentication(auth);
+
+            Account user = (Account) auth.getPrincipal();
+            if (user.isBlocked()){
+                return ResponseEntity.badRequest().body("Account blo");
+
+            }
+            if (!user.isActive()) {
+                return ResponseEntity.badRequest().body("Account not activated!");
+            }
+            String jwtToken = jWTTokenHelper.generateToken(user);
+            LoginResponse response = new LoginResponse();
+            response.setToken(jwtToken);
+            response.setUserId(user.getId());
+            response.setUsername(user.getUsername());
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Something went wrong, try again!");
+        }
     }
 
     public PasswordEncoder passwordEncoder() {

@@ -26,29 +26,14 @@ public class AccountController {
     @Autowired
     private AuthenticationManager authenticationManager;
 
-    @Autowired
-    JWTTokenHelper jWTTokenHelper;
-
     @PostMapping(value = "register")
     public Object register(@RequestBody Account user) {
         return accountService.addUser(user);
     }
 
     @PostMapping(value = "login")
-    public ResponseEntity<?> login(@RequestBody AuthenticationRequest authenticationRequest) throws InvalidKeySpecException, NoSuchAlgorithmException {
-        final Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(authenticationRequest.getUsername(),
-                        authenticationRequest.getPassword()));
-
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-
-        Account user = (Account) authentication.getPrincipal();
-        String jwtToken = jWTTokenHelper.generateToken(user);
-        LoginResponse response = new LoginResponse();
-        response.setToken(jwtToken);
-        response.setUserId(user.getId());
-        response.setUsername(user.getUsername());
-        return ResponseEntity.ok(response);
+    public ResponseEntity<?> loginUser(@RequestBody AuthenticationRequest authenticationRequest) throws InvalidKeySpecException, NoSuchAlgorithmException {
+        return accountService.login(authenticationRequest, authenticationManager);
     }
 
     @GetMapping(value = "getUser")

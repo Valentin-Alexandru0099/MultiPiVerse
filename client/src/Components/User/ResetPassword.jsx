@@ -53,6 +53,7 @@ export default function ResetPassword() {
             formValues.confirmPassword === ""
             || formValues.password === "") {
             notify("warn", "All fields required!");
+            return;
         }
         if (formValues.confirmPassword !== formValues.password) {
             notify("warn", "Passwords does not match!");
