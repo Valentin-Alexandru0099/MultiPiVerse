@@ -13,6 +13,15 @@ public class AccountInfo {
     private boolean active;
     private boolean blocked;
     private String activationCode;
+    private String resetCode;
+    public String getResetCode() {
+        return resetCode;
+    }
+
+    public void setResetCode(String resetCode) {
+        this.resetCode = resetCode;
+    }
+
     public void setActive(boolean active) {
         this.active = active;
     }

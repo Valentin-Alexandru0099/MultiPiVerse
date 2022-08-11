@@ -4,7 +4,7 @@ const defaultUrl = "http://localhost:8080/api/"
 
 const getData = async (url, payload) => {
     try {
-        const response = await axios.get(defaultUrl + url, payload);
+        const response = await axios.get(defaultUrl + url, { params: payload });
         return response.data;
     } catch (error) {
         return error.response.data;

@@ -30,12 +30,15 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().exceptionHandling()
                 .authenticationEntryPoint(authenticationEntryPoint).and()
                 .authorizeRequests((request) -> request.antMatchers(
-                        "/"
-                        , "/api/users/register"
-                        , "/api/users/login").permitAll()
+                                "/"
+                                , "/api/users/resetUserPassword/**"
+                                , "/api/users/register"
+                                , "/api/users/login"
+                                , "/api/users/generateResetPasswordCode/**"
+                                , "/api/users/findUserByResetCode/**"
+                        ).permitAll()
                 )
                 .authorizeRequests((request) -> request.antMatchers(
-                        "/api/users/user"
                         ).hasRole("USER")
                         .anyRequest().authenticated())
                 .addFilterBefore(new JWTAuthenticationFilter(accountService, jWTTokenHelper),

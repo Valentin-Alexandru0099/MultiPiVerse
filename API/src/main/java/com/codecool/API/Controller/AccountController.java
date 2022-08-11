@@ -19,7 +19,7 @@ import java.security.spec.InvalidKeySpecException;
 
 @RestController
 @CrossOrigin("http://localhost:3000/")
-@RequestMapping("api/users")
+@RequestMapping("api/users/")
 public class AccountController {
     @Autowired
     private AccountService accountService;
@@ -29,12 +29,12 @@ public class AccountController {
     @Autowired
     JWTTokenHelper jWTTokenHelper;
 
-    @PostMapping(value = "/register")
+    @PostMapping(value = "register")
     public Object register(@RequestBody Account user) {
         return accountService.addUser(user);
     }
 
-    @PostMapping(value = "/login")
+    @PostMapping(value = "login")
     public ResponseEntity<?> login(@RequestBody AuthenticationRequest authenticationRequest) throws InvalidKeySpecException, NoSuchAlgorithmException {
         final Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(authenticationRequest.getUsername(),
@@ -65,4 +65,20 @@ public class AccountController {
 
         return ResponseEntity.ok(userInfo);
     }
+
+    @GetMapping(value = "generateResetPasswordCode/{email}")
+    public ResponseEntity<?> findUserForResetLinkAndCode(@PathVariable String email) {
+        return accountService.findUser(email);
+    }
+
+    @GetMapping(value = "findUserByResetCode/{resetCode}")
+    public ResponseEntity<?> findUserForPasswordReset(@PathVariable String resetCode) {
+        return accountService.findUserByResetCode(resetCode);
+    }
+
+    @PutMapping(value = "resetUserPassword/{resetCode}")
+    public ResponseEntity<?> resetPassword(@PathVariable String resetCode, @RequestBody String password){
+       return accountService.resetPassword(resetCode, password);
+    }
+
 }

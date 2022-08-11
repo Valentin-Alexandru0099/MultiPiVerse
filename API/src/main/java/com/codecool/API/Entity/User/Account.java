@@ -32,6 +32,7 @@ public class Account implements UserDetails {
     private boolean active;
     private boolean blocked;
     private String activationCode;
+    private String resetPasswordCode;
     @ElementCollection(fetch = FetchType.EAGER)
     @JsonIgnore
     private List<String> roles = new ArrayList<>();

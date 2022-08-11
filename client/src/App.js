@@ -3,11 +3,14 @@ import { MDBContainer } from 'mdb-react-ui-kit';
 import { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { Route, Routes } from "react-router";
+import { BrowserRouter } from "react-router-dom";
 import Navbar from "./Components/Navbar/";
 import PageFooter from "./Components/Footer/";
 import HomePage from "./Components/LandingPage/";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import ResetPassword from './Components/User/ResetPassword';
 
 export const notify = (type, message) => {
   switch (type) {
@@ -50,7 +53,12 @@ function App() {
       />
       <MDBContainer>
         <Navbar />
-        <HomePage />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/reset-password" element={<ResetPassword />} />
+          </Routes>
+        </BrowserRouter>
         <PageFooter />
       </MDBContainer>
     </>

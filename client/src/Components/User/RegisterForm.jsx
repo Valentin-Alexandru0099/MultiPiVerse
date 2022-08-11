@@ -11,7 +11,6 @@ import { useState } from 'react';
 import { notify } from '../../App';
 import { postData } from '../../Fetcher/fetcher';
 import { sendEmail } from "../../EmailJs/emailJs";
-import { useEffect } from 'react';
 
 export default function RegisterForm() {
 

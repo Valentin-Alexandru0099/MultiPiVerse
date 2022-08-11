@@ -98,6 +98,12 @@ export default function HomePage() {
                         </MDBCol>
                     </MDBRow>
                 </div>
+                <MDBCard id='info' alignment='center'>
+                    <MDBCardBody>
+                        <MDBCardTitle>Are you ready to start your adventure ?</MDBCardTitle>
+                        <RegisterForm />
+                    </MDBCardBody>
+                </MDBCard>
             </header>
             <MDBCard id='info' className='w-50'>
                 <MDBCardBody>
@@ -162,12 +168,6 @@ export default function HomePage() {
                     </MDBTabsPane>
                 </MDBTabsContent>
             </section>
-            <MDBCard id='info' alignment='center'>
-                <MDBCardBody>
-                    <MDBCardTitle>Are you ready to start your adventure ?</MDBCardTitle>
-                    <RegisterForm />
-                </MDBCardBody>
-            </MDBCard>
         </>
     );
 };

@@ -14,8 +14,11 @@ import {
     MDBDropdownItem,
     MDBDropdownLink,
     MDBCollapse,
+    MDBInputGroup,
+    MDBBtn,
 } from 'mdb-react-ui-kit';
 import brand from "../../images/Brand.png";
+import LoginForm from '../User/LoginForm';
 
 export default function Navbar() {
     const [showBasic, setShowBasic] = useState(false);
@@ -24,12 +27,11 @@ export default function Navbar() {
         <>
             <MDBNavbar expand='lg' bgColor='dark' dark>
                 <MDBContainer fluid>
-                    <MDBNavbarBrand src={brand}>
+                    <MDBNavbarBrand href='/' src={brand}>
                         <img
                             src={brand}>
                         </img>
                     </MDBNavbarBrand>
-
                     <MDBNavbarToggler
                         aria-controls='navbarSupportedContent'
                         aria-expanded='false'
@@ -38,46 +40,13 @@ export default function Navbar() {
                     >
                         <MDBIcon icon='bars' fas />
                     </MDBNavbarToggler>
-
                     <MDBCollapse navbar show={showBasic}>
                         <MDBNavbarNav className='mr-auto mb-2 mb-lg-0'>
-                            <MDBNavbarItem>
-                                <MDBNavbarLink active aria-current='page' href='/'>
-                                    Home
-                                </MDBNavbarLink>
-                            </MDBNavbarItem>
-                            <MDBNavbarItem>
-                                <MDBNavbarLink href='#'>Link</MDBNavbarLink>
-                            </MDBNavbarItem>
-
-                            <MDBNavbarItem>
-                                <MDBDropdown>
-                                    <MDBDropdownToggle tag='a' className='nav-link'>
-                                        Dropdown
-                                    </MDBDropdownToggle>
-                                    <MDBDropdownMenu>
-                                        <MDBDropdownItem>
-                                            <MDBDropdownLink>Action</MDBDropdownLink>
-                                        </MDBDropdownItem>
-                                        <MDBDropdownItem>
-                                            <MDBDropdownLink>Another action</MDBDropdownLink>
-                                        </MDBDropdownItem>
-                                        <MDBDropdownItem>
-                                            <MDBDropdownLink>Something else here</MDBDropdownLink>
-                                        </MDBDropdownItem>
-                                    </MDBDropdownMenu>
-                                </MDBDropdown>
-                            </MDBNavbarItem>
-
-                            <MDBNavbarItem>
-                                <MDBNavbarLink disabled href='#' tabIndex={-1} aria-disabled='true'>
-                                    Disabled
-                                </MDBNavbarLink>
-                            </MDBNavbarItem>
                         </MDBNavbarNav>
+                        <LoginForm />
                     </MDBCollapse>
                 </MDBContainer>
             </MDBNavbar>
         </>
     );
-}
+};
