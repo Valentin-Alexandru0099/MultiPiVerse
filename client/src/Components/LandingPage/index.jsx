@@ -25,6 +25,7 @@ import RegisterForm from '../User/RegisterForm';
 import { useEffect } from 'react';
 import { userToken } from '../../Jotai/Atom';
 import { useAtom } from 'jotai';
+import border from "../../images/border.png";
 
 export default function HomePage() {
 
@@ -111,75 +112,75 @@ export default function HomePage() {
                         </MDBCol>
                     </MDBRow>
                 </div>
-                <MDBCard id='info' alignment='center'>
+                <section id='border'>
+                    <MDBCard id='borderIn' alignment='center'>
+                        <MDBCardBody >
+                            <MDBCardTitle>Are you ready to start your adventure ?</MDBCardTitle>
+                            <RegisterForm />
+                        </MDBCardBody>
+                    </MDBCard>
+                </section>
+            </header>
+            <section id='border'>
+                <MDBCard id='borderIn'>
                     <MDBCardBody>
-                        <MDBCardTitle>Are you ready to start your adventure ?</MDBCardTitle>
-                        <RegisterForm />
+                        <MDBCardTitle>Why would You play this game ? </MDBCardTitle>
+                        <ul>
+                            <li>
+                                <MDBCardText>Run on browser, no need to download;</MDBCardText>
+                            </li>
+                            <li>
+                                <MDBCardText>Bug free;</MDBCardText>
+                            </li>
+                            <li>
+                                <MDBCardText>In game purchases;</MDBCardText>
+                            </li>
+                            <li>
+                                <MDBCardText>Play as much as you like!</MDBCardText>
+                            </li>
+                        </ul>
                     </MDBCardBody>
                 </MDBCard>
-            </header>
-            <MDBCard id='info' className='w-50'>
-                <MDBCardBody>
-                    <MDBCardTitle>Why would You play this game ? </MDBCardTitle>
-                    <ul>
-                        <li>
-                            <MDBCardText>Run on browser, no need to download;</MDBCardText>
-                        </li>
-                        <li>
-                            <MDBCardText>Bug free;</MDBCardText>
-                        </li>
-                        <li>
-                            <MDBCardText>In game purchases;</MDBCardText>
-                        </li>
-                        <li>
-                            <MDBCardText>Play as much as you like!</MDBCardText>
-                        </li>
-                    </ul>
-                </MDBCardBody>
-            </MDBCard>
-            <div className='card-end'>
-                <MDBCard id='info' className='w-50' alignment='end'>
+            </section>
+            <section id='border'>
+                <MDBCard id='borderIn'>
                     <MDBCardBody>
                         <MDBCardTitle>Turn based game adventure designed.</MDBCardTitle>
                         <MDBCardText> In memory of many GREAT turn based games, this came out of my imagination.</MDBCardText>
-                        <img
-                            src={infoGif}
-                            alt="..."
-                            width="100%"
-                        >
-                        </img>
                     </MDBCardBody>
                 </MDBCard>
-            </div>
-            <section className='about-game'>
-                <MDBTabs fill className='mb-3'>
-                    <MDBTabsItem>
-                        <MDBTabsLink onClick={() => handleBasicClick('tab1')} active={basicActive === 'tab1'}>
-                            Champions
-                        </MDBTabsLink>
-                    </MDBTabsItem>
-                    <MDBTabsItem>
-                        <MDBTabsLink onClick={() => handleBasicClick('tab2')} active={basicActive === 'tab2'}>
-                            Items
-                        </MDBTabsLink>
-                    </MDBTabsItem>
-                    <MDBTabsItem>
-                        <MDBTabsLink onClick={() => handleBasicClick('tab3')} active={basicActive === 'tab3'}>
-                            Missions
-                        </MDBTabsLink>
-                    </MDBTabsItem>
-                </MDBTabs>
-                <MDBTabsContent>
-                    <MDBTabsPane show={basicActive === 'tab1'}>
-                        <ChampionsInfo />
-                    </MDBTabsPane>
-                    <MDBTabsPane show={basicActive === 'tab2'}>
-                        <ItemsInfo />
-                    </MDBTabsPane>
-                    <MDBTabsPane show={basicActive === 'tab3'}>
-                        <MissionsInfo />
-                    </MDBTabsPane>
-                </MDBTabsContent>
+            </section>
+            <section id='border'>
+                <div id='borderIn'>
+                    <MDBTabs fill className='mb-3'>
+                        <MDBTabsItem>
+                            <MDBTabsLink onClick={() => handleBasicClick('tab1')} active={basicActive === 'tab1'}>
+                                Champions
+                            </MDBTabsLink>
+                        </MDBTabsItem>
+                        <MDBTabsItem>
+                            <MDBTabsLink onClick={() => handleBasicClick('tab2')} active={basicActive === 'tab2'}>
+                                Items
+                            </MDBTabsLink>
+                        </MDBTabsItem>
+                        <MDBTabsItem>
+                            <MDBTabsLink onClick={() => handleBasicClick('tab3')} active={basicActive === 'tab3'}>
+                                Missions
+                            </MDBTabsLink>
+                        </MDBTabsItem>
+                    </MDBTabs>
+                    <MDBTabsContent>
+                        <MDBTabsPane id='borderIn' show={basicActive === 'tab1'}>
+                            <ChampionsInfo />
+                        </MDBTabsPane>
+                        <MDBTabsPane id='borderIn' show={basicActive === 'tab2'}>
+                            <ItemsInfo />
+                        </MDBTabsPane>
+                        <MDBTabsPane id='borderIn' show={basicActive === 'tab3'}>
+                            <MissionsInfo />
+                        </MDBTabsPane>
+                    </MDBTabsContent>
+                </div>
             </section>
         </>
     );

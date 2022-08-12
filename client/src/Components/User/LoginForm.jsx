@@ -116,12 +116,12 @@ export default function LoginForm() {
                 <MDBRow>
                     <MDBCol>
                         <MDBInputGroup className='mb-3' noBorder textBefore>
-                            <MDBInput style={{ backgroundColor: 'darkgrey' }} name='username' onChange={handleChange} label="Username" className='form-control' type='text' />
+                            <MDBInput style={{ backgroundColor: 'white' }} name='username' onChange={handleChange} label="Username" className='form-control' type='text' />
                         </MDBInputGroup>
                     </MDBCol>
                     <MDBCol>
                         <MDBInputGroup className='mb-3' noBorder textBefore>
-                            <MDBInput style={{ backgroundColor: 'darkgrey' }} name='password' onChange={handleChange} label="Password" className='form-control' type='password' />
+                            <MDBInput style={{ backgroundColor: 'white' }} name='password' onChange={handleChange} label="Password" className='form-control' type='password' />
                         </MDBInputGroup>
                     </MDBCol>
                     <MDBCol>

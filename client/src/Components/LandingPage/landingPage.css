@@ -11,10 +11,17 @@
     transform: translateY(-10px);
 }
 
-#info {
-    margin-top: 1%;
-    margin-bottom: 1%;
-    padding: 1%;
+#border {
+    border: 50px solid transparent;
+    border-image-repeat: repeat;
+    border-image-slice: 30;
+    border-image: url("/src/images/border.png") 20 round;
+}
+
+#borderIn {
+    background-image: url("/src/images/border-in.png");
+    background-size: cover;
+    text-shadow: black 1px 1px;
 }
 
 .card-end {
@@ -33,5 +40,5 @@
 
 .register-form {
     display: flex;
-    justify-content: center
+    justify-content: center;
 }
