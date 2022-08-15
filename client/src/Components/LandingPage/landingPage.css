@@ -12,16 +12,14 @@
 }
 
 #border {
-    border: 50px solid transparent;
-    border-image-repeat: repeat;
-    border-image-slice: 30;
-    border-image: url("/src/images/border.png") 20 round;
+    border: 30px solid transparent;
+    border-image: url("/src/images/border.png") 15% stretch;
 }
 
-#borderIn {
-    background-image: url("/src/images/border-in.png");
-    background-size: cover;
-    text-shadow: black 1px 1px;
+#border-background {
+    background-color: #262626eb;
+    color: yellow;
+
 }
 
 .card-end {
@@ -41,4 +39,10 @@
 .register-form {
     display: flex;
     justify-content: center;
+}
+
+.register-section {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-evenly;
 }
