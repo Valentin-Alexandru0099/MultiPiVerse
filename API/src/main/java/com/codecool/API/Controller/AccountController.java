@@ -36,19 +36,9 @@ public class AccountController {
         return accountService.login(authenticationRequest, authenticationManager);
     }
 
-    @GetMapping(value = "getUser")
-    public ResponseEntity<?> getUser(@RequestBody Long userId) {
-        Account user = accountService.getUser(userId);
-        Account userObj = (Account) accountService.loadUserByUsername(user.getUsername());
-
-        AccountInfo userInfo = new AccountInfo();
-        userInfo.setId(userObj.getId());
-        userInfo.setUsername(userObj.getUsername());
-        userInfo.setEmail(userObj.getEmail());
-        userInfo.setSubmissionTime(userObj.getSubmissionTime());
-        userInfo.setInventory(userObj.getInventory());
-
-        return ResponseEntity.ok(userInfo);
+    @GetMapping(value = "get-user/{username}")
+    public ResponseEntity<?> getUser(@PathVariable String username) {
+        return accountService.getUserByUsername(username);
     }
 
     @GetMapping(value = "generateResetPasswordCode/{email}")
@@ -62,8 +52,8 @@ public class AccountController {
     }
 
     @PutMapping(value = "resetUserPassword/{resetCode}")
-    public ResponseEntity<?> resetPassword(@PathVariable String resetCode, @RequestBody String password) {
-        return accountService.resetPassword(resetCode, password);
+    public ResponseEntity<?> resetPassword(@PathVariable String resetCode, @RequestBody Account account) {
+        return accountService.resetPassword(resetCode, account.getPassword());
     }
 
     @GetMapping(value = "activate-account/{activationCode}")

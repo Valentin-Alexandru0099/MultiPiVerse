@@ -12,7 +12,7 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { notify } from '../../App';
 import { getData, putData } from '../../Fetcher/fetcher';
-import "./ResetPassword.css";
+import "./index.css";
 
 export default function ResetPassword() {
 

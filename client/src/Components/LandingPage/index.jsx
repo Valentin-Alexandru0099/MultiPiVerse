@@ -12,16 +12,17 @@ import {
     MDBTabsContent,
     MDBTabsPane,
 } from 'mdb-react-ui-kit';
-import "./landingPage.css";
+import "./index.css";
 import m from "../../images/m.png";
 import pi from "../../images/pi.png";
 import v from "../../images/v.png";
-import { useState } from 'react';
-import ChampionsInfo from './champions';
-import ItemsInfo from './items';
-import MissionsInfo from './missions';
-import RegisterForm from '../User/RegisterForm';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
+
+import RegisterForm from '../RegisterForm/index';
+import ChampionInfo from '../ChampionInfo/index';
+import ItemInfo from '../ItemInfo/index';
+import MissionInfo from '../MissionInfo/index';
+
 import { userToken } from '../../Jotai/Atom';
 import { useAtom } from 'jotai';
 
@@ -169,13 +170,13 @@ export default function HomePage() {
                     </MDBTabs>
                     <MDBTabsContent>
                         <MDBTabsPane id='border-background' show={basicActive === 'tab1'}>
-                            <ChampionsInfo />
+                            <ChampionInfo />
                         </MDBTabsPane>
                         <MDBTabsPane id='border-background' show={basicActive === 'tab2'}>
-                            <ItemsInfo />
+                            <ItemInfo />
                         </MDBTabsPane>
                         <MDBTabsPane id='border-background' show={basicActive === 'tab3'}>
-                            <MissionsInfo />
+                            <MissionInfo />
                         </MDBTabsPane>
                     </MDBTabsContent>
                 </div>

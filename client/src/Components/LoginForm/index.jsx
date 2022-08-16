@@ -18,7 +18,7 @@ import { notify } from '../../App';
 import { sendEmail } from '../../EmailJs/emailJs';
 import { getData, postData } from '../../Fetcher/fetcher';
 import { useAtom } from 'jotai';
-import { userToken } from '../../Jotai/Atom';
+import { userToken, accountUsername } from '../../Jotai/Atom';
 
 
 export default function LoginForm() {
@@ -26,6 +26,7 @@ export default function LoginForm() {
     const [token, setToken] = useAtom(userToken);
     const [resetCode, setResetCode] = useState("");
     const [centredModal, setCentredModal] = useState(false);
+    const [username, setUsename] = useAtom(accountUsername);
     const [resetPasswordField, setResetPasswordField] = useState({
         email: "",
     });
@@ -80,13 +81,13 @@ export default function LoginForm() {
         }
         postData("users/login", formValues)
             .then((response) => {
-                console.log(response);
                 if (response.token) {
                     setToken(response.token);
+                    setUsename(response.username);
+                    window.location.href = 'user-page';
                 } else {
                     notify("error", response);
                 };
-
             });
     };
 

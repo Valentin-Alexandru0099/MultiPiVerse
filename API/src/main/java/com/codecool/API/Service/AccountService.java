@@ -123,10 +123,13 @@ public class AccountService implements UserDetailsService {
         return usernameUsed != null;
     }
 
-    public Account getUser(Long id) {
-        Optional<Account> user = accountRepository.findById(id);
-        return user.orElse(null);
-
+    public ResponseEntity<?> getUserByUsername(String username) {
+        Account user = (Account) loadUserByUsername(username);
+        if (user != null) {
+            return ResponseEntity.ok(generateAccountResponse(user));
+        }else{
+            return ResponseEntity.badRequest().body("Something went wrong!");
+        }
     }
 
     @Override
@@ -148,7 +151,7 @@ public class AccountService implements UserDetailsService {
             SecurityContextHolder.getContext().setAuthentication(auth);
 
             Account user = (Account) auth.getPrincipal();
-            if (user.isBlocked()){
+            if (user.isBlocked()) {
                 return ResponseEntity.badRequest().body("Account blocked");
             }
             if (!user.isActive()) {

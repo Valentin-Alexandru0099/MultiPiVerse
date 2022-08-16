@@ -1,18 +1,24 @@
 import './App.css';
+
 import { MDBContainer } from 'mdb-react-ui-kit';
 import { useEffect } from 'react';
+
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+
 import { Route, Routes } from "react-router";
 import { BrowserRouter } from "react-router-dom";
-import Navbar from "./Components/Navbar/";
-import PageFooter from "./Components/Footer/";
-import HomePage from "./Components/LandingPage/";
-import { ToastContainer, toast } from 'react-toastify';
+
 import 'react-toastify/dist/ReactToastify.css';
-import ResetPassword from './Components/User/ResetPassword';
-import AccountActivation from './Components/User/AccountActivation';
-import UserPage from './Components/User/UserPage';
+import { ToastContainer, toast } from 'react-toastify';
+
+import HomePage from "./Components/LandingPage/index";
+import AccountActivation from "./Components/AccountActivation/index";
+import PageFooter from "./Components/Footer/index";
+import PageNavbar from "./Components/Navbar/index";
+import ResetPassword from "./Components/ResetPassword/index";
+import UserPage from "./Components/User/index";
+
 
 export const notify = (type, message) => {
   switch (type) {
@@ -54,7 +60,7 @@ function App() {
         pauseOnHover
       />
       <MDBContainer>
-        <Navbar />
+        <PageNavbar />
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<HomePage />} />
