@@ -25,6 +25,7 @@ public class Account implements UserDetails {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    private String avatar;
     private String username;
     private String password;
     private String email;
@@ -36,7 +37,9 @@ public class Account implements UserDetails {
     @ElementCollection(fetch = FetchType.EAGER)
     @JsonIgnore
     private List<String> roles = new ArrayList<>();
-    @OneToOne
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "inventory_id", referencedColumnName = "id")
     private Inventory inventory;
 
     @JsonIgnore

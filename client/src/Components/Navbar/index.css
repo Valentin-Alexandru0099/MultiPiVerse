@@ -1,0 +1,12 @@
+#username {
+    color: yellow;
+}
+
+#account-section {
+    display: flex;
+    align-items: center;
+}
+
+.avatar-nav{
+    width: 50%;
+}

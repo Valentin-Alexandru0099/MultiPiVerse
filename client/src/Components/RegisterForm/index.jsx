@@ -72,32 +72,32 @@ export default function RegisterForm() {
     return (
         <>
             <form ref={form} onSubmit={handleSubmit} className='register-form'>
-                <MDBListGroup flush>
-                    <MDBListGroupItem>
+                <MDBListGroup style={{ backgroundColor: 'trasparent' }} flush>
+                    <MDBListGroupItem style={{ backgroundColor: 'transparent' }}>
                         <MDBInputGroup className='mb-3' noBorder textBefore={<MDBIcon fas icon='user-circle' />}>
-                            <MDBInput name='username' onChange={handleChange} label="Username" className='form-control' type='text' />
+                            <MDBInput style={{ backgroundColor: 'white' }} name='username' onChange={handleChange} label="Username" className='form-control' type='text' />
                         </MDBInputGroup>
                     </MDBListGroupItem>
-                    <MDBListGroupItem>
+                    <MDBListGroupItem style={{ backgroundColor: 'transparent' }}>
                         <MDBInputGroup className='mb-3' noBorder textBefore={<MDBIcon fas icon='envelope' />}>
-                            <MDBInput name='email' onChange={handleChange} label="Email" className='form-control' type='email' />
+                            <MDBInput style={{ backgroundColor: 'white' }} name='email' onChange={handleChange} label="Email" className='form-control' type='email' />
                         </MDBInputGroup>
                     </MDBListGroupItem>
-                    <MDBListGroupItem>
+                    <MDBListGroupItem style={{ backgroundColor: 'transparent' }}>
                         <MDBInputGroup className='mb-3' noBorder textBefore={<MDBIcon fas icon='unlock-alt' />}>
-                            <MDBInput name='password' onChange={handleChange} label="Password" className='form-control' type='password' />
+                            <MDBInput style={{ backgroundColor: 'white' }} name='password' onChange={handleChange} label="Password" className='form-control' type='password' />
                         </MDBInputGroup>
                     </MDBListGroupItem>
-                    <MDBListGroupItem>
+                    <MDBListGroupItem style={{ backgroundColor: 'transparent' }}>
                         <MDBInputGroup className='mb-3' noBorder textBefore={<MDBIcon fas icon='unlock-alt' />}>
-                            <MDBInput name='confirmPassword' onChange={handleChange} label="Confirm Password" className='form-control' type='password' />
+                            <MDBInput style={{ backgroundColor: 'white' }} name='confirmPassword' onChange={handleChange} label="Confirm Password" className='form-control' type='password' />
                         </MDBInputGroup>
                     </MDBListGroupItem>
-                    <MDBListGroupItem>
+                    <MDBListGroupItem style={{ backgroundColor: 'transparent' }}>
                         <a href='/login'>Already have an account?</a>
                         <input style={{ display: 'none' }} name='activationCode' defaultValue={activationCode} />
                     </MDBListGroupItem>
-                    <MDBListGroupItem>
+                    <MDBListGroupItem style={{ backgroundColor: 'transparent' }}>
                         <MDBBtn color='secondary' type='submit'>Join now!</MDBBtn>
                     </MDBListGroupItem>
                 </MDBListGroup>

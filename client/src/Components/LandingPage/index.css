@@ -11,12 +11,6 @@
     transform: translateY(-10px);
 }
 
-#info {
-    margin-top: 1%;
-    margin-bottom: 1%;
-    padding: 1%;
-}
-
 .card-end {
     display: flex;
     justify-content: flex-end;
@@ -33,5 +27,11 @@
 
 .register-form {
     display: flex;
-    justify-content: center
+    justify-content: center;
+}
+
+.register-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
 }

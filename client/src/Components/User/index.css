@@ -1,0 +1,17 @@
+.user-page-container {
+    display: flex;
+    justify-content: center;
+    padding: 5%
+}
+
+.user-settings {
+    padding: 5%;
+}
+
+.fields {
+    margin: 5%;
+}
+
+.avatar-img-picker {
+    margin: 1%;
+}

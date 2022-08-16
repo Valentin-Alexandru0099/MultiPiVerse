@@ -18,12 +18,13 @@ import { notify } from '../../App';
 import { sendEmail } from '../../EmailJs/emailJs';
 import { getData, postData } from '../../Fetcher/fetcher';
 import { useAtom } from 'jotai';
-import { userToken } from '../../Jotai/Atom';
+import { userToken, accountUsername } from '../../Jotai/Atom';
 
 
 export default function LoginForm() {
 
     const [token, setToken] = useAtom(userToken);
+    const [username, setUsename] = useAtom(accountUsername);
     const [resetCode, setResetCode] = useState("");
     const [centredModal, setCentredModal] = useState(false);
     const [resetPasswordField, setResetPasswordField] = useState({
@@ -57,6 +58,10 @@ export default function LoginForm() {
 
     const resetPassword = (e) => {
         e.preventDefault();
+        if (resetPasswordField.email === "") {
+            notify("warn", "All fields required!")
+            return;
+        };
         getData("users/generateResetPasswordCode/" + resetPasswordField.email)
             .then((response) => {
                 if (response.resetCode) {
@@ -80,13 +85,13 @@ export default function LoginForm() {
         }
         postData("users/login", formValues)
             .then((response) => {
-                console.log(response);
                 if (response.token) {
                     setToken(response.token);
+                    setUsename(response.username);
+                    window.location.href = 'user-page';
                 } else {
                     notify("error", response);
                 };
-
             });
     };
 
@@ -112,16 +117,17 @@ export default function LoginForm() {
                     </MDBModalContent>
                 </MDBModalDialog>
             </MDBModal>
+
             <MDBInputGroup onSubmit={login} tag="form" className='w-auto mb-3'>
                 <MDBRow>
                     <MDBCol>
                         <MDBInputGroup className='mb-3' noBorder textBefore>
-                            <MDBInput style={{ backgroundColor: 'darkgrey' }} name='username' onChange={handleChange} label="Username" className='form-control' type='text' />
+                            <MDBInput style={{ backgroundColor: 'white' }} name='username' onChange={handleChange} label="Username" className='form-control' type='text' />
                         </MDBInputGroup>
                     </MDBCol>
                     <MDBCol>
                         <MDBInputGroup className='mb-3' noBorder textBefore>
-                            <MDBInput style={{ backgroundColor: 'darkgrey' }} name='password' onChange={handleChange} label="Password" className='form-control' type='password' />
+                            <MDBInput style={{ backgroundColor: 'white' }} name='password' onChange={handleChange} label="Password" className='form-control' type='password' />
                         </MDBInputGroup>
                     </MDBCol>
                     <MDBCol>
