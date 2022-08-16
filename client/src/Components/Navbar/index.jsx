@@ -7,7 +7,6 @@ import {
     MDBIcon,
     MDBNavbarNav,
     MDBCollapse,
-    MDBBtn,
     MDBNavbarLink,
     MDBNavbarItem,
     MDBDropdown,
@@ -21,6 +20,7 @@ import "./index.css";
 
 import brand from "../../images/Brand.png";
 import LoginForm from '../LoginForm/index';
+import Avatar from '../Avatar';
 
 import { useAtom } from 'jotai';
 import { userToken, accountUsername } from '../../Jotai/Atom';
@@ -86,10 +86,16 @@ export default function Navbar() {
                                         </MDBNavbarItem>
                                     </MDBNavbarNav>
                                     <section id='account-section'>
+                                        <div className='avatar-nav'>
+                                            <Avatar width="30" />
+                                        </div>
                                         <MDBDropdown>
                                             <MDBDropdownToggle id='username' tag='h5' className='nav-link'>
                                                 {username}
                                                 <MDBDropdownMenu>
+                                                    <MDBDropdownItem>
+                                                        <MDBDropdownLink href='settings'><MDBIcon fas icon="user-alt" /> User page</MDBDropdownLink>
+                                                    </MDBDropdownItem>
                                                     <MDBDropdownItem>
                                                         <MDBDropdownLink href='inventory'><MDBIcon fas icon="suitcase" /> Inventory</MDBDropdownLink>
                                                     </MDBDropdownItem>

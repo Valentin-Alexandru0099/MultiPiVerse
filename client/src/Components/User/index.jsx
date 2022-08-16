@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { accountUsername, userToken } from '../../Jotai/Atom';
 import { useAtom } from 'jotai';
 import { getData } from "../../Fetcher/fetcher";
+import Avatar from "../Avatar";
 
 export default function UserPage() {
 
@@ -14,7 +15,6 @@ export default function UserPage() {
         } else {
             getData("users/get-user/" + userDetails, token)
                 .then((response) => {
-                    console.log(response);
                     // setUserDetails(response);
                 });
         };
@@ -24,7 +24,7 @@ export default function UserPage() {
 
     return (
         <>
-            ceva
+            <Avatar/>
         </>
     );
 };
