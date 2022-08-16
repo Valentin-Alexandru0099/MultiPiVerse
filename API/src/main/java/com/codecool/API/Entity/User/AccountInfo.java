@@ -6,6 +6,7 @@ import java.time.LocalDate;
 public class AccountInfo {
 
     private Long id;
+    private String avatar;
     private String username;
     private String email;
     private LocalDate submissionTime;
@@ -84,6 +85,14 @@ public class AccountInfo {
 
     public void setInventory(Inventory inventory) {
         this.inventory = inventory;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
 }

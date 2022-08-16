@@ -11,17 +11,6 @@
     transform: translateY(-10px);
 }
 
-#border {
-    border: 30px solid transparent;
-    border-image: url("/src/images/border.png") 15% stretch;
-}
-
-#border-background {
-    background-color: #262626eb;
-    color: yellow;
-
-}
-
 .card-end {
     display: flex;
     justify-content: flex-end;

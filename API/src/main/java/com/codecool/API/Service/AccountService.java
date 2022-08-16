@@ -2,8 +2,10 @@ package com.codecool.API.Service;
 
 import com.codecool.API.Entity.User.Account;
 import com.codecool.API.Entity.User.AccountInfo;
+import com.codecool.API.Entity.User.Inventory;
 import com.codecool.API.Entity.User.LoginResponse;
 import com.codecool.API.Repository.AccountRepository;
+import com.codecool.API.Repository.InventoryRepository;
 import com.codecool.API.Security.AuthenticationRequest;
 import com.codecool.API.Security.JWTTokenHelper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,17 +24,17 @@ import org.springframework.stereotype.Service;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.time.LocalDate;
-import java.util.Optional;
 import java.util.Random;
 
 @Service
 public class AccountService implements UserDetailsService {
     @Autowired
     private AccountRepository accountRepository;
-
     @Autowired
     JWTTokenHelper jWTTokenHelper;
 
+    @Autowired
+    private InventoryRepository inventoryRepository;
 
     public ResponseEntity<?> activateAccount(String activationCode) {
         Account user = accountRepository.findByActivationCode(activationCode);
@@ -91,11 +93,18 @@ public class AccountService implements UserDetailsService {
         } else if (findUserByUsername(user.getUsername())) {
             return ResponseEntity.badRequest().body("Username already exists !");
         }
+        Inventory inventory = new Inventory();
         user.setPassword(passwordEncoder().encode(user.getPassword()));
         user.setSubmissionTime(LocalDate.now());
         user.getRoles().add("ROLE_USER");
         user.setActivationCode(generateCode());
+        user.setInventory(inventory);
+        user.setAvatar("con1");
+        inventory.setAccount(user);
+        inventory.setGold(0L);
+        inventory.setCrystals(0L);
         accountRepository.save(user);
+
         return ResponseEntity.ok(generateAccountResponse(user));
     }
 
@@ -110,6 +119,7 @@ public class AccountService implements UserDetailsService {
         accountInfo.setActive(user.isActive());
         accountInfo.setBlocked(user.isBlocked());
         accountInfo.setResetCode(user.getResetPasswordCode());
+        accountInfo.setAvatar(user.getAvatar());
         return accountInfo;
     }
 
@@ -127,7 +137,7 @@ public class AccountService implements UserDetailsService {
         Account user = (Account) loadUserByUsername(username);
         if (user != null) {
             return ResponseEntity.ok(generateAccountResponse(user));
-        }else{
+        } else {
             return ResponseEntity.badRequest().body("Something went wrong!");
         }
     }

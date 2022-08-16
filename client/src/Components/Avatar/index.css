@@ -1,6 +1,6 @@
 #avatar-frame-section {
-    border: 30px solid transparent;
-    border-image: url("/src/images/avatar-images/avatar-frame.png") 33% round;
+    border: 12px solid transparent;
+    border-image: url("/src/images/avatar-images/avatar-frame.png") 10% round;
 }
 
 .avatar {

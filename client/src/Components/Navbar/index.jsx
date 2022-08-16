@@ -23,7 +23,7 @@ import LoginForm from '../LoginForm/index';
 import Avatar from '../Avatar';
 
 import { useAtom } from 'jotai';
-import { userToken, accountUsername } from '../../Jotai/Atom';
+import { userToken, accountUsername, accountDetails } from '../../Jotai/Atom';
 import { RESET } from 'jotai/utils'
 
 export default function Navbar() {
@@ -31,6 +31,7 @@ export default function Navbar() {
     const [showBasic, setShowBasic] = useState(false);
     const [token, setToken] = useAtom(userToken);
     const [username, setUsename] = useAtom(accountUsername);
+    const [account, setAccount] = useAtom(accountDetails);
 
     const logout = () => {
         setToken(RESET);
@@ -79,28 +80,23 @@ export default function Navbar() {
                                                 Arena
                                             </MDBNavbarLink>
                                         </MDBNavbarItem>
-                                        <MDBNavbarItem>
-                                            <MDBNavbarLink href='inventory'>
-                                                Inventory
-                                            </MDBNavbarLink>
-                                        </MDBNavbarItem>
                                     </MDBNavbarNav>
                                     <section id='account-section'>
                                         <div className='avatar-nav'>
-                                            <Avatar width="30" />
+                                            {account && (<><Avatar avatar={account.avatar} width="30" /></>)}
                                         </div>
                                         <MDBDropdown>
                                             <MDBDropdownToggle id='username' tag='h5' className='nav-link'>
                                                 {username}
                                                 <MDBDropdownMenu>
                                                     <MDBDropdownItem>
-                                                        <MDBDropdownLink href='settings'><MDBIcon fas icon="user-alt" /> User page</MDBDropdownLink>
+                                                        <MDBDropdownLink href='user-page'><MDBIcon fas icon="cogs" /> Settings</MDBDropdownLink>
                                                     </MDBDropdownItem>
                                                     <MDBDropdownItem>
-                                                        <MDBDropdownLink href='inventory'><MDBIcon fas icon="suitcase" /> Inventory</MDBDropdownLink>
+                                                        <MDBDropdownLink href='Champions'><MDBIcon fas icon="users" /> Champions</MDBDropdownLink>
                                                     </MDBDropdownItem>
                                                     <MDBDropdownItem>
-                                                        <MDBDropdownLink href='settings'><MDBIcon fas icon="cogs" /> Settings</MDBDropdownLink>
+                                                        <MDBDropdownLink href='Items'><MDBIcon fas icon="toolbox" /> Items</MDBDropdownLink>
                                                     </MDBDropdownItem>
                                                     <hr className='dropdown-divider' />
                                                     <MDBDropdownItem>

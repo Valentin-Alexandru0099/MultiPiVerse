@@ -24,9 +24,9 @@ import { userToken, accountUsername } from '../../Jotai/Atom';
 export default function LoginForm() {
 
     const [token, setToken] = useAtom(userToken);
+    const [username, setUsename] = useAtom(accountUsername);
     const [resetCode, setResetCode] = useState("");
     const [centredModal, setCentredModal] = useState(false);
-    const [username, setUsename] = useAtom(accountUsername);
     const [resetPasswordField, setResetPasswordField] = useState({
         email: "",
     });
@@ -113,6 +113,7 @@ export default function LoginForm() {
                     </MDBModalContent>
                 </MDBModalDialog>
             </MDBModal>
+
             <MDBInputGroup onSubmit={login} tag="form" className='w-auto mb-3'>
                 <MDBRow>
                     <MDBCol>

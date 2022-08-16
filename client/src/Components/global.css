@@ -1,0 +1,10 @@
+#border {
+    border: 30px solid transparent;
+    border-image: url("/src/images/border.png") 15% stretch;
+}
+
+#border-background {
+    background-color: #262626eb;
+    color: yellow;
+
+}

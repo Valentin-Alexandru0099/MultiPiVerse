@@ -13,6 +13,7 @@ import {
     MDBTabsPane,
 } from 'mdb-react-ui-kit';
 import "./index.css";
+import "../global.css";
 import m from "../../images/m.png";
 import pi from "../../images/pi.png";
 import v from "../../images/v.png";
