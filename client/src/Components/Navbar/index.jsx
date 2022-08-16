@@ -10,7 +10,14 @@ import {
     MDBBtn,
     MDBNavbarLink,
     MDBNavbarItem,
+    MDBDropdown,
+    MDBDropdownToggle,
+    MDBDropdownMenu,
+    MDBDropdownItem,
+    MDBDropdownLink,
 } from 'mdb-react-ui-kit';
+
+import "./index.css";
 
 import brand from "../../images/Brand.png";
 import LoginForm from '../LoginForm/index';
@@ -78,10 +85,25 @@ export default function Navbar() {
                                             </MDBNavbarLink>
                                         </MDBNavbarItem>
                                     </MDBNavbarNav>
-                                    <MDBNavbarLink href='user-page'>
-                                        {username}
-                                    </MDBNavbarLink>
-                                    <MDBBtn onClick={logout} size='lg' color='secondary'>Logout</MDBBtn>
+                                    <section id='account-section'>
+                                        <MDBDropdown>
+                                            <MDBDropdownToggle id='username' tag='h5' className='nav-link'>
+                                                {username}
+                                                <MDBDropdownMenu>
+                                                    <MDBDropdownItem>
+                                                        <MDBDropdownLink href='inventory'><MDBIcon fas icon="suitcase" /> Inventory</MDBDropdownLink>
+                                                    </MDBDropdownItem>
+                                                    <MDBDropdownItem>
+                                                        <MDBDropdownLink href='settings'><MDBIcon fas icon="cogs" /> Settings</MDBDropdownLink>
+                                                    </MDBDropdownItem>
+                                                    <hr className='dropdown-divider' />
+                                                    <MDBDropdownItem>
+                                                        <MDBDropdownLink onClick={logout} href='/'><MDBIcon fas icon="door-open" /> Logout</MDBDropdownLink>
+                                                    </MDBDropdownItem>
+                                                </MDBDropdownMenu>
+                                            </MDBDropdownToggle>
+                                        </MDBDropdown>
+                                    </section>
                                 </MDBCollapse>
                             </MDBContainer>
                         </MDBNavbar>
