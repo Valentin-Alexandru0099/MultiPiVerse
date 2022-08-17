@@ -17,13 +17,14 @@ import {
 } from 'mdb-react-ui-kit';
 
 import "./index.css";
+import "../global.css";
 
 import brand from "../../images/Brand.png";
 import LoginForm from '../LoginForm/index';
 import Avatar from '../Avatar';
 
 import { useAtom } from 'jotai';
-import { userToken, accountUsername, accountDetails } from '../../Jotai/Atom';
+import { userToken, accountUsername, accountDetails, accountAvatar } from '../../Jotai/Atom';
 import { RESET } from 'jotai/utils'
 
 export default function Navbar() {
@@ -32,9 +33,12 @@ export default function Navbar() {
     const [token, setToken] = useAtom(userToken);
     const [username, setUsename] = useAtom(accountUsername);
     const [account, setAccount] = useAtom(accountDetails);
+    const [avatar, setAvatar] = useAtom(accountAvatar);
 
     const logout = () => {
         setToken(RESET);
+        setUsename(RESET);
+        setAccount(RESET);
         window.location.href = "/";
     };
 
@@ -61,29 +65,29 @@ export default function Navbar() {
                                 <MDBCollapse navbar show={showBasic}>
                                     <MDBNavbarNav className='mr-auto mb-2 mb-lg-0'>
                                         <MDBNavbarItem>
-                                            <MDBNavbarLink href='map'>
+                                            <MDBNavbarLink id='c-yellow' href='map'>
                                                 Map
                                             </MDBNavbarLink>
                                         </MDBNavbarItem>
                                         <MDBNavbarItem>
-                                            <MDBNavbarLink href='town'>
+                                            <MDBNavbarLink id='c-yellow' href='town'>
                                                 Town
                                             </MDBNavbarLink>
                                         </MDBNavbarItem>
                                         <MDBNavbarItem>
-                                            <MDBNavbarLink href='shop'>
+                                            <MDBNavbarLink id='c-yellow' href='shop'>
                                                 Shop
                                             </MDBNavbarLink>
                                         </MDBNavbarItem>
                                         <MDBNavbarItem>
-                                            <MDBNavbarLink href='arena'>
+                                            <MDBNavbarLink id='c-yellow' href='arena'>
                                                 Arena
                                             </MDBNavbarLink>
                                         </MDBNavbarItem>
                                     </MDBNavbarNav>
                                     <section id='account-section'>
                                         <div className='avatar-nav'>
-                                            {account && (<><Avatar avatar={account.avatar} width="30" /></>)}
+                                            {account && (<><Avatar avatar={avatar} width="30" /></>)}
                                         </div>
                                         <MDBDropdown>
                                             <MDBDropdownToggle id='username' tag='h5' className='nav-link'>

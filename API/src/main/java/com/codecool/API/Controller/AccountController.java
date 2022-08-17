@@ -54,4 +54,9 @@ public class AccountController {
     public ResponseEntity<?> activateAccount(@PathVariable String activationCode) {
         return accountService.activateAccount(activationCode);
     }
+
+    @PutMapping(value = "change-avatar")
+    public ResponseEntity<?> changeAvatar(@RequestBody Account account){
+        return accountService.changeAvatar(account);
+    }
 }

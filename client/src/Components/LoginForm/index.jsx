@@ -58,6 +58,10 @@ export default function LoginForm() {
 
     const resetPassword = (e) => {
         e.preventDefault();
+        if (resetPasswordField.email === "") {
+            notify("warn", "All fields required!")
+            return;
+        };
         getData("users/generateResetPasswordCode/" + resetPasswordField.email)
             .then((response) => {
                 if (response.resetCode) {

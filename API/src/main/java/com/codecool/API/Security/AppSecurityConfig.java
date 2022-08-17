@@ -43,6 +43,7 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
                 )
                 .authorizeRequests((request) -> request.antMatchers(
                                 "api/users/get-user/**"
+                        ,"api/users/change-avatar"
                         ).hasRole("USER")
                         .anyRequest().authenticated())
                 .addFilterBefore(new JWTAuthenticationFilter(accountService, jWTTokenHelper),

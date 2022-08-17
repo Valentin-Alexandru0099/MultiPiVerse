@@ -33,8 +33,17 @@ public class AccountService implements UserDetailsService {
     @Autowired
     JWTTokenHelper jWTTokenHelper;
 
-    @Autowired
-    private InventoryRepository inventoryRepository;
+
+    public ResponseEntity<?> changeAvatar(Account account) {
+        Account user = accountRepository.findByUsername(account.getUsername());
+        if (user != null) {
+           user.setAvatar(account.getAvatar());
+           accountRepository.saveAndFlush(user);
+           return ResponseEntity.ok("Avatar changed!");
+        }
+        return ResponseEntity.badRequest().body("Something went wrong!");
+
+    }
 
     public ResponseEntity<?> activateAccount(String activationCode) {
         Account user = accountRepository.findByActivationCode(activationCode);
