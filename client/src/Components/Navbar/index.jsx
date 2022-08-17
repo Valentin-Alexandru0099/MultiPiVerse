@@ -39,6 +39,7 @@ export default function Navbar() {
         setToken(RESET);
         setUsename(RESET);
         setAccount(RESET);
+        setAvatar(RESET);
         window.location.href = "/";
     };
 

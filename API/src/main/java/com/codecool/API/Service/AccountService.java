@@ -34,12 +34,22 @@ public class AccountService implements UserDetailsService {
     JWTTokenHelper jWTTokenHelper;
 
 
+    public ResponseEntity<?> deleteAccount(String username) {
+        Account user = accountRepository.findByUsername(username);
+        System.out.println(user);
+        if (user != null) {
+            accountRepository.delete(user);
+            return ResponseEntity.ok("Account deleted!");
+        }
+        return ResponseEntity.badRequest().body("Something went wrong!");
+    }
+
     public ResponseEntity<?> changeAvatar(Account account) {
         Account user = accountRepository.findByUsername(account.getUsername());
         if (user != null) {
-           user.setAvatar(account.getAvatar());
-           accountRepository.saveAndFlush(user);
-           return ResponseEntity.ok("Avatar changed!");
+            user.setAvatar(account.getAvatar());
+            accountRepository.saveAndFlush(user);
+            return ResponseEntity.ok("Avatar changed!");
         }
         return ResponseEntity.badRequest().body("Something went wrong!");
 

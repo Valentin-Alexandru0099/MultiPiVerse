@@ -56,7 +56,12 @@ public class AccountController {
     }
 
     @PutMapping(value = "change-avatar")
-    public ResponseEntity<?> changeAvatar(@RequestBody Account account){
+    public ResponseEntity<?> changeAvatar(@RequestBody Account account) {
         return accountService.changeAvatar(account);
+    }
+
+    @DeleteMapping(value = "delete-account/{username}")
+    public ResponseEntity<?> deleteAccount(@PathVariable String username) {
+        return accountService.deleteAccount(username);
     }
 }

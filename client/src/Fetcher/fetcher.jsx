@@ -20,11 +20,12 @@ const postData = async (url, payload, token) => {
     };
 };
 
-const deleteData = async (url, payload, token) => {
+const deleteData = async (url, token, payload) => {
     try {
-        const response = await axios.delete(defaultUrl + url, payload, { headers: { Authorization: "Bearer " + token } });
+        const response = await axios.delete(defaultUrl + url, { headers: { Authorization: "Bearer " + token } }, payload);
         return response.data;
     } catch (error) {
+        console.log(error)
         return error.response.data;
     };
 };
