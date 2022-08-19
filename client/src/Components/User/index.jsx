@@ -133,72 +133,78 @@ export default function UserPage() {
                     <>
                         <MDBModal tabIndex='-1' show={centredModal} setShow={setCentredModal}>
                             <MDBModalDialog centered>
-                                <MDBModalContent>
-                                    <MDBModalHeader>
-                                        <MDBModalTitle>Forget Password</MDBModalTitle>
-                                        <MDBBtn className='btn-close' color='none' onClick={toggleShow}></MDBBtn>
-                                    </MDBModalHeader>
-                                    <MDBModalBody style={{ textAlign: 'center' }}>
-                                        <p>Enter here your email address to reset your password!</p>
-                                        <form ref={passwordResetForm} onSubmit={(e) => { resetPassword(e) }} >
-                                            <MDBInputGroup className='mb-3' noBorder textBefore={<MDBIcon fas icon='envelope' />}>
-                                                <MDBInput style={{ display: 'none' }} value={resetCode} name='resetCode' label="Email" className='form-control' type='password' />
-                                                <MDBInput name='email' onChange={hanldePasswordChange} label="Email" className='form-control' type='email' />
-                                                <MDBBtn color='secondary' type='submit'> Submit </MDBBtn>
-                                            </MDBInputGroup>
-                                        </form>
-                                    </MDBModalBody>
-                                </MDBModalContent>
+                                <div id="border">
+                                    <MDBModalContent id="border-background" >
+                                        <MDBModalHeader >
+                                            <MDBModalTitle>Forget Password</MDBModalTitle>
+                                            <MDBBtn className='btn-close' color='secondary' onClick={toggleShow}></MDBBtn>
+                                        </MDBModalHeader>
+                                        <MDBModalBody style={{ textAlign: 'center' }}>
+                                            <p>Enter here your email address to reset your password!</p>
+                                            <form ref={passwordResetForm} onSubmit={(e) => { resetPassword(e) }} >
+                                                <MDBInputGroup className='mb-3' noBorder textBefore={<MDBIcon fas icon='envelope' />}>
+                                                    <MDBInput style={{ display: 'none' }} value={resetCode} name='resetCode' label="Email" className='form-control' type='password' />
+                                                    <MDBInput style={{ backgroundColor: 'white' }} name='email' onChange={hanldePasswordChange} label="Email" className='form-control' type='email' />
+                                                    <MDBBtn color='secondary' type='submit'> Submit </MDBBtn>
+                                                </MDBInputGroup>
+                                            </form>
+                                        </MDBModalBody>
+                                    </MDBModalContent>
+                                </div>
                             </MDBModalDialog>
                         </MDBModal>
 
                         <MDBModal tabIndex='-1' show={centredAvatarChangeModal} setShow={setCentredAvatarChangeModal}>
                             <MDBModalDialog centered>
-                                <MDBModalContent>
-                                    <MDBModalHeader>
-                                        <MDBModalTitle>Avatars</MDBModalTitle>
-                                        <MDBBtn className='btn-close' color='none' onClick={toggleShowCentredAvatarChangeModal}></MDBBtn>
-                                    </MDBModalHeader>
-                                    <MDBModalBody>
-                                        {centredAvatarChangeModal === true
-                                            && (
-                                                allAvatars.map((av, key) => {
-                                                    return (
-                                                        <img id={"con" + (key + 1)} onClick={(e) => { changeAvatar(e) }} key={key} className="avatar-img-picker" src={av} alt="ceva" />
-                                                    )
-                                                }))
-                                        }
-                                    </MDBModalBody>
-                                </MDBModalContent>
+                                <div id="border">
+                                    <MDBModalContent id="border-background">
+                                        <MDBModalHeader>
+                                            <MDBModalTitle>Avatars</MDBModalTitle>
+                                            <MDBBtn className='btn-close' color='secondary' onClick={toggleShowCentredAvatarChangeModal}></MDBBtn>
+                                        </MDBModalHeader>
+                                        <MDBModalBody className="avatar-position">
+                                            {centredAvatarChangeModal === true
+                                                && (
+                                                    allAvatars.map((av, key) => {
+                                                        return (
+                                                            <img id={"con" + (key + 1)} onClick={(e) => { changeAvatar(e) }} key={key} className="avatar-img-picker" src={av} alt="ceva" />
+                                                        )
+                                                    }))
+                                            }
+                                        </MDBModalBody>
+                                    </MDBModalContent>
+                                </div>
                             </MDBModalDialog>
                         </MDBModal>
 
                         <MDBModal staticBackdrop tabIndex='-1' show={centredModalDeleteAccount} setShow={setCentredModalDeleteAccount}>
                             <MDBModalDialog centered>
-                                <MDBModalContent>
-                                    <MDBModalHeader>
-                                        <MDBModalTitle>Hold on!</MDBModalTitle>
-                                    </MDBModalHeader>
-                                    <MDBModalBody style={{ textAlign: 'center' }}>
-                                        <h5>
-                                            You are about to delete this account
-                                        </h5>
-                                        <h3>FOREVER!</h3>
-                                        <h5>Are you sure ?</h5>
-                                    </MDBModalBody>
-                                    <MDBCardFooter >
-                                        <div style={{
-                                            display: "flex",
-                                            justifyContent: "space-between"
-                                        }}>
-                                            <MDBBtn onClick={(e) => {
-                                                notify("", "😶‍🌫️Smart decision!");
-                                                toggleShowCentredModalDeleteAccount(e);
-                                            }} size="lg" color="warning">No</MDBBtn>
-                                            <MDBBtn onClick={deleteAccount} size="lg" color="danger">Yes</MDBBtn>
-                                        </div>
-                                    </MDBCardFooter>
-                                </MDBModalContent>
+                                <div id="border">
+                                    <MDBModalContent style={{ padding: '5%' }} id="border-background">
+                                        <MDBModalHeader>
+                                            <MDBModalTitle>Hold on!</MDBModalTitle>
+                                        </MDBModalHeader>
+                                        <MDBModalBody style={{ textAlign: 'center' }}>
+                                            <h5>
+                                                You are about to delete this account
+                                            </h5>
+                                            <h3>FOREVER!</h3>
+                                            <h5>Are you sure ?</h5>
+                                        </MDBModalBody>
+                                        <MDBCardFooter >
+                                            <div style={{
+                                                display: "flex",
+                                                justifyContent: "space-between"
+                                            }}>
+                                                <MDBBtn onClick={(e) => {
+                                                    notify("", "😶‍🌫️Smart decision!");
+                                                    toggleShowCentredModalDeleteAccount(e);
+                                                }} size="lg" color="secondary">No</MDBBtn>
+                                                <MDBBtn onClick={deleteAccount} size="lg" color="danger">Yes</MDBBtn>
+                                            </div>
+                                        </MDBCardFooter>
+                                    </MDBModalContent>
+                                </div>
                             </MDBModalDialog>
                         </MDBModal>
 

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { getData } from "../../Fetcher/fetcher";
-
+import "../global.css";
 import {
     MDBBtn,
     MDBCard,
@@ -28,9 +28,9 @@ export default function AccountActivation() {
 
     return (
         <>
-            <div style={{ margin: '10%' }}>
+            <div id="border" style={{ margin: '10%' }}>
                 <MDBCard style={{ backgroundColor: 'white' }} alignment='center'>
-                    <MDBCardBody style={{ padding: '10%' }} >
+                    <MDBCardBody id="border-background" style={{ padding: '10%' }} >
                         <MDBCardTitle>{message}</MDBCardTitle>
                         <MDBBtn color='secondary' href='/'>Go To Main Page</MDBBtn>
                     </MDBCardBody>

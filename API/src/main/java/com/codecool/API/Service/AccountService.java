@@ -36,7 +36,6 @@ public class AccountService implements UserDetailsService {
 
     public ResponseEntity<?> deleteAccount(String username) {
         Account user = accountRepository.findByUsername(username);
-        System.out.println(user);
         if (user != null) {
             accountRepository.delete(user);
             return ResponseEntity.ok("Account deleted!");

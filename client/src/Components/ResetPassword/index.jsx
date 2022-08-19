@@ -13,6 +13,7 @@ import { useState } from 'react';
 import { notify } from '../../App';
 import { getData, putData } from '../../Fetcher/fetcher';
 import "./index.css";
+import "../global.css";
 
 export default function ResetPassword() {
 
@@ -72,20 +73,20 @@ export default function ResetPassword() {
 
     return (
         <>
-            <div style={{ margin: '10%' }}>
+            <div id='border' style={{ margin: '10%' }}>
                 <MDBCard style={{ backgroundColor: 'white' }} alignment='center'>
-                    <MDBCardBody style={{ padding: '10%' }} >
+                    <MDBCardBody id='border-background' style={{ padding: '10%' }} >
                         {
                             resetOn
                                 ? (
                                     <>
                                         <form className="reset-password-form" onSubmit={resetPassword}>
                                             <div>
-                                                <MDBInputGroup className='mb-3' noBorder textBefore={<MDBIcon fas icon='envelope' />}>
-                                                    <MDBInput name='password' onChange={handleChange} label="New Password" className='form-control' type='password' />
+                                                <MDBInputGroup className='mb-3' noBorder textBefore={<MDBIcon fas icon='lock' />}>
+                                                    <MDBInput style={{backgroundColor: 'white'}} name='password' onChange={handleChange} label="New Password" className='form-control' type='password' />
                                                 </MDBInputGroup>
-                                                <MDBInputGroup className='mb-3' noBorder textBefore={<MDBIcon fas icon='envelope' />}>
-                                                    <MDBInput name='confirmPassword' onChange={handleChange} label="Confirm New Password" className='form-control' type='password' />
+                                                <MDBInputGroup className='mb-3' noBorder textBefore={<MDBIcon fas icon='lock' />}>
+                                                    <MDBInput style={{backgroundColor: 'white'}} name='confirmPassword' onChange={handleChange} label="Confirm New Password" className='form-control' type='password' />
                                                 </MDBInputGroup>
                                             </div>
                                             <MDBBtn color='secondary' size='lg'>Submit</MDBBtn>

@@ -90,22 +90,25 @@ export default function Navbar() {
                                         <div className='avatar-nav'>
                                             {account && (<><Avatar avatar={avatar} width="30" /></>)}
                                         </div>
-                                        <MDBDropdown>
-                                            <MDBDropdownToggle id='username' tag='h5' className='nav-link'>
+                                        <MDBDropdown  >
+                                            <MDBDropdownToggle  id='username' tag='h5' className='nav-link'>
                                                 {username}
-                                                <MDBDropdownMenu>
+                                                <MDBDropdownMenu id="border-background" >
                                                     <MDBDropdownItem>
-                                                        <MDBDropdownLink href='user-page'><MDBIcon fas icon="cogs" /> Settings</MDBDropdownLink>
+                                                        <MDBDropdownLink id='border-background'><MDBIcon fas icon="universal-access" /> Account options</MDBDropdownLink>
                                                     </MDBDropdownItem>
                                                     <MDBDropdownItem>
-                                                        <MDBDropdownLink href='Champions'><MDBIcon fas icon="users" /> Champions</MDBDropdownLink>
+                                                        <MDBDropdownLink id='c-yellow'  href='user-page'><MDBIcon fas icon="cogs" /> Settings</MDBDropdownLink>
                                                     </MDBDropdownItem>
                                                     <MDBDropdownItem>
-                                                        <MDBDropdownLink href='Items'><MDBIcon fas icon="toolbox" /> Items</MDBDropdownLink>
+                                                        <MDBDropdownLink id='c-yellow' href='Champions'><MDBIcon fas icon="users" /> Champions</MDBDropdownLink>
+                                                    </MDBDropdownItem>
+                                                    <MDBDropdownItem>
+                                                        <MDBDropdownLink id='c-yellow' href='Items'><MDBIcon fas icon="toolbox" /> Items</MDBDropdownLink>
                                                     </MDBDropdownItem>
                                                     <hr className='dropdown-divider' />
                                                     <MDBDropdownItem>
-                                                        <MDBDropdownLink onClick={logout} href='/'><MDBIcon fas icon="door-open" /> Logout</MDBDropdownLink>
+                                                        <MDBDropdownLink id='c-yellow' onClick={logout} href='/'><MDBIcon fas icon="door-open" /> Logout</MDBDropdownLink>
                                                     </MDBDropdownItem>
                                                 </MDBDropdownMenu>
                                             </MDBDropdownToggle>

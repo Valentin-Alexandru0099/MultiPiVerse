@@ -6,9 +6,9 @@
 #border-background {
     background-color: #262626eb;
     color: yellow;
-
 }
 
 #c-yellow {
     color: yellow;
+    text-shadow: 1px 1px black;
 }

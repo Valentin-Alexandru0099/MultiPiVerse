@@ -12,6 +12,7 @@ import {
     MDBModalBody,
     MDBIcon,
 } from 'mdb-react-ui-kit';
+import '../global.css';
 import { useRef } from 'react';
 import { useState } from 'react';
 import { notify } from '../../App';
@@ -99,22 +100,24 @@ export default function LoginForm() {
         <>
             <MDBModal tabIndex='-1' show={centredModal} setShow={setCentredModal}>
                 <MDBModalDialog centered>
-                    <MDBModalContent>
-                        <MDBModalHeader>
-                            <MDBModalTitle>Forget Password</MDBModalTitle>
-                            <MDBBtn className='btn-close' color='none' onClick={toggleShow}></MDBBtn>
-                        </MDBModalHeader>
-                        <MDBModalBody style={{ textAlign: 'center' }}>
-                            <p>Enter here your email address to reset your password!</p>
-                            <form ref={passwordResetForm} onSubmit={(e) => { resetPassword(e) }} >
-                                <MDBInputGroup className='mb-3' noBorder textBefore={<MDBIcon fas icon='envelope' />}>
-                                    <MDBInput style={{ display: 'none' }} value={resetCode} name='resetCode' label="Email" className='form-control' type='password' />
-                                    <MDBInput name='email' onChange={hanldePasswordChange} label="Email" className='form-control' type='email' />
-                                    <MDBBtn color='secondary' type='submit'> Submit </MDBBtn>
-                                </MDBInputGroup>
-                            </form>
-                        </MDBModalBody>
-                    </MDBModalContent>
+                    <div id='border'>
+                        <MDBModalContent id='border-background'>
+                            <MDBModalHeader>
+                                <MDBModalTitle>Forget Password</MDBModalTitle>
+                                <MDBBtn className='btn-close' color='secondary' onClick={toggleShow}></MDBBtn>
+                            </MDBModalHeader>
+                            <MDBModalBody style={{ textAlign: 'center' }}>
+                                <p>Enter here your email address to reset your password!</p>
+                                <form ref={passwordResetForm} onSubmit={(e) => { resetPassword(e) }} >
+                                    <MDBInputGroup className='mb-3' noBorder textBefore={<MDBIcon fas icon='envelope' />}>
+                                        <MDBInput style={{ display: 'none' }} value={resetCode} name='resetCode' label="Email" className='form-control' type='password' />
+                                        <MDBInput style={{ backgroundColor: 'white' }} name='email' onChange={hanldePasswordChange} label="Email" className='form-control' type='email' />
+                                        <MDBBtn color='secondary' type='submit'> Submit </MDBBtn>
+                                    </MDBInputGroup>
+                                </form>
+                            </MDBModalBody>
+                        </MDBModalContent>
+                    </div>
                 </MDBModalDialog>
             </MDBModal>
 

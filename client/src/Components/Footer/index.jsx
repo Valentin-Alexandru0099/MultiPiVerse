@@ -7,11 +7,12 @@ import {
     MDBRow,
     MDBBtn
 } from 'mdb-react-ui-kit';
+import '../global.css';
 
 export default function PageFooter() {
     return (
         <MDBFooter className='text-center' color='white' bgColor='dark'>
-            <MDBContainer className='p-4'>
+            <MDBContainer id='c-yellow' className='p-4'>
                 <section className=''>
                     <MDBRow>
                         <MDBCol md='4' className='mb-4 mb-md-0'>
@@ -42,12 +43,12 @@ export default function PageFooter() {
                             </h6>
                             <ul className='list-unstyled mb-0'>
                                 <li>
-                                    <MDBBtn outline color="light" floating className='m-1' href='#!' role='button'>
+                                    <MDBBtn outline color="secondary" floating className='m-1' href='#!' role='button'>
                                         <MDBIcon fab icon='linkedin-in' />
                                     </MDBBtn>
                                 </li>
                                 <li>
-                                    <MDBBtn outline color="light" floating className='m-1' href='#!' role='button'>
+                                    <MDBBtn outline color="secondary" floating className='m-1' href='#!' role='button'>
                                         <MDBIcon fab icon='github' />
                                     </MDBBtn>
                                 </li>
@@ -56,9 +57,9 @@ export default function PageFooter() {
                     </MDBRow>
                 </section>
             </MDBContainer>
-            <div className='text-center p-3' style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)' }}>
+            <div id='c-yellow' className='text-center p-3' style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)' }}>
                 © 2022 Copyright:
-                <a className='text-white' target="_blank" rel="noreferrer" href='https://github.com/Valentin-Alexandru0099'>
+                <a className='text-secondary' target="_blank" rel="noreferrer" href='https://github.com/Valentin-Alexandru0099'>
                     Dumitru Alexandru
                 </a>
             </div>
